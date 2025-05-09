@@ -8,14 +8,15 @@ import javafx.util.Duration;
 
 public class TimerCTD {
 
-    private int secondsRemaining = 10;
+    public int secondsRemaining = 100;
+
     private Controller controller;
     private Timeline timeline;
 
     public TimerCTD(Controller controller) {
         this.controller = controller;
-
         timeline = new Timeline(
+
                 new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -28,11 +29,25 @@ public class TimerCTD {
                     }
                 }));
         timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+
+    }
+
+    public void startTimerCTD() {
+        timeline.playFromStart();
+    }
+
+    public int addTen() {
+        secondsRemaining += 10;
+        return secondsRemaining;
+    }
+
+    public int subTen() {
+        secondsRemaining -= 10;
+        return secondsRemaining;
     }
 
     public void start() {
-        timeline.playFromStart();
+
     }
 
 }
